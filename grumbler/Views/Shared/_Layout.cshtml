@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Assets.CSS("screen")
+    @Assets.CSS("site")
+    @Assets.jQuery()
+    @Assets.Script("grumbler")
+   @RenderSection("head", required: false)
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <div class="container">
+                <div class="column span-24 tmargin-36">
+                    <div class="column span-2">
+                        <a href="/">
+                           @Assets.Glyph("satellite")
+                        </a>
+                    </div>
+                    <div id="title" class="column span-16">
+                        <h1><a href="/">Grumbler</a></h1>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+        <section id="main">
+            <div class="container">
+                <div class="column span-24">
+                    @RenderBody()
+                </div>
+            </div>
+        </section>
+        <footer>
+        </footer>
+    </div>
+</body>
+</html>

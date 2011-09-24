@@ -1,0 +1,12 @@
+C:\@Tekpub\grumbler\grumbler\bin\grumbler.dll
+C:\@Tekpub\grumbler\grumbler\bin\grumbler.pdb
+C:\@Tekpub\grumbler\grumbler\bin\EntityFramework.dll
+C:\@Tekpub\grumbler\grumbler\bin\EntityFramework.xml
+C:\@Tekpub\grumbler\grumbler\obj\Debug\ResolveAssemblyReference.cache
+C:\@Tekpub\grumbler\grumbler\obj\Debug\grumbler.dll
+C:\@Tekpub\grumbler\grumbler\obj\Debug\grumbler.pdb
+C:\@Tekpub\grumbler\grumbler\bin\GitSharp.Core.dll
+C:\@Tekpub\grumbler\grumbler\bin\GitSharp.dll
+C:\@Tekpub\grumbler\grumbler\bin\Winterdom.IO.FileMap.dll
+C:\@Tekpub\grumbler\grumbler\bin\Tamir.SharpSSH.dll
+C:\@Tekpub\grumbler\grumbler\bin\ICSharpCode.SharpZipLib.dll

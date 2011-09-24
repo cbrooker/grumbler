@@ -1,0 +1,67 @@
+﻿@{
+    
+    var repo = new GitRepo(Model.DeployPath);
+    
+}
+
+@Assets.CSS("forms")
+@Assets.ButtonCSS()
+
+<h2 class="groovy-title">@Model.Name</h2>
+@if (TempData["message"] != null) {
+    <h4>This command was just executed:</h4>
+    <div id="terminal-window" style="display:block">
+        <pre>@TempData["message"]</pre>
+    </div>
+}
+<div id="result" class="success" style="display:none"></div>
+<div class="column span-24">
+<fieldset>
+    <legend>Repos</legend>
+    <form action="/project/update" method="post">
+        <input type="hidden" name="ID" value="@Model.ID" />
+        <p>
+          <label>Repository URL</label>
+          <input type="text" name="RepositoryUrl" value= "@Model.RepositoryUrl" size=80/>
+        </p>
+        <p>
+          <label>Deploy Path</label>
+          <input type="text" name="DeployPath" value= "@Model.DeployPath" size=80/>
+        </p>
+        <p>
+            @Assets.SubmitButton()
+        </p>
+    </form>
+
+        <p>
+            <form action="/project/pull" method="post">
+                <input type="hidden" name="id" value="@Model.ID" />
+                @Assets.SubmitButton("Pull Latest")
+            </form> 
+        </p>
+</fieldset>
+</div>
+<div class="clear"></div>
+<div class="column span-24">
+    <fieldset>
+        <legend>Commit History</legend>
+    @if (repo.IsRepo()) {
+        foreach (var commit in repo.LastEight()) {
+             @Repository.CommitBox(Model, commit)
+        }
+    } else {
+        <div class="column span-16 tpad-12">
+            <i>This repository is empty - would you like to clone it now? If this is a big repository, it could take a minute or two...</i> 
+        </div>
+        <div class="column span-4">
+            <form action="/project/clone" method="post">
+                <input type="hidden" name="id" value="@Model.ID" />
+                @Assets.SubmitButton("Clone")
+            </form>         
+         </div>
+    }
+    </fieldset>
+    <div id="terminal-window" class="column span-18" >
+        <div class="column span-18 tpad-36">Loading...</div>
+    </div>
+</div>

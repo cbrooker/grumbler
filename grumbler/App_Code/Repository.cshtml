@@ -1,0 +1,31 @@
+﻿@helper CommitBox(dynamic p,GitSharp.Commit c) {
+    <div class="column span-24" style="padding:6px;background-color:#f5f5f5;color:#333">
+        <span style="color:#ccc">  @c.Hash.Substring(0, 10) </span>
+        <strong>@Pretty.Date(c.CommitDate.ToString())</strong></div>
+    <div class="column span-24" style="padding:12px">
+        <div class="column span-2 colborder">
+            @Gravatar.Image(c.Author.EmailAddress, 40)
+        </div>
+        <div class="column span-15 colborder">
+            <div class="column span-14">
+                @c.Message
+            </div>
+            <div class="column span-12" style = "color:#ccc;font-size:0.8em">
+                <i>@c.Author.Name - @Pretty.Date(c.AuthorDate.ToString())</i>
+            </div> 
+        </div>    
+        <div class="column span-4">
+            @if(p.DeployedID != c.Hash){
+                <form action="/project/deploy" method="post">
+                    <input name="id" value="@p.ID" type="hidden" />
+                    <input name="hash" value="@c.Hash" type="hidden" />
+                    @Assets.SubmitButton("Deploy")
+                </form>
+            }else{
+               <i>Deployed...</i>   
+            }
+        </div>                   
+      
+    </div>  
+    <hr />
+}

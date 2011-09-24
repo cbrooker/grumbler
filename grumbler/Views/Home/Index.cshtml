@@ -1,0 +1,64 @@
+﻿@Assets.CSS("forms")
+@Assets.ButtonCSS()
+    <div class="column span-24">
+    @foreach (var p in Model) {
+        <h2 class="groovy-title">
+            <a href="/project/show/@p.ID">  @p.Name</a>
+        </h2>
+        var repo = new GitRepo(p.DeployPath);
+        <div class="column span-24">
+        <table>
+            <tr>
+                <td>Repository: </td>
+                <td>@p.RepositoryUrl</td>
+            </tr>
+            <tr>
+                <td>Deploy To: </td>
+                <td>@p.DeployPath</td>
+            </tr>
+            <tr>
+
+                @if (repo.IsRepo()) {
+                    <td>
+                         <form action="project/pull" method="post">
+                            <input type="hidden" name="id" value="@p.ID" />
+                            @Assets.SubmitButton("Pull Latest")
+                        </form>   
+                    </td>
+                    <td>Pull the latest from the repo</td>  
+                } else {
+                  <td>
+                  <form action="project/clone" method="post">
+                    <input type="hidden" name="id" value="@p.ID" />
+                    @Assets.SubmitButton("Clone")
+                  </form>    
+                  </td>
+                  <td>
+                    <i>
+                    This repo doesn't exist on disk yet. Clone it to get started. If this is a big repository - it may take a minute or two.
+                    </i>
+                    </td>
+                    }
+                
+            </tr>
+        </table>
+        </div>
+    }
+    <h1>Hey There</h1>
+    <p>
+        You're probably wondering what this is, and what it does. There's a few things you need to do before you use it... so here we go.
+    </p>
+       <p>
+            First - this website needs access to your file system. If you're running it locally - everything should "just work". If not, you'll
+            need to lock it down under Windows Auth. If you don't know what I'm talking about... you shouldn't be using this.
+       </p>
+        <p>
+            The database scripts are in the App_Data directory. Pop those in SQL Server on your system.
+        </p>
+        <p>Once all that's done, click that little blue plus sign down to the right and have at it. All you need
+        is a public git repo and a name for your project. That's all... have fun...</p>
+    <hr />
+    <div class="column span-22 right">
+        <a href="/project/create"><img src="/public/glyphs/add---blue.png" height="24px" title="Add Project"/></a>
+    </div>
+    </div>

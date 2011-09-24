@@ -1,0 +1,44 @@
+﻿@helper CSS(string cssFile){
+    <link href="@Url.SiteRoot()/public/stylesheets/@(cssFile).css" rel="stylesheet" />
+}
+@helper ButtonCSS(){
+    <link href="@Url.SiteRoot()/public/stylesheets/plugins/buttons/screen.css" rel="stylesheet" />
+}
+@helper Script(string scriptFile){
+    <script src="~/public/javascripts/@(scriptFile).js" type="text/javascript" ></script>
+}
+@helper Glyph(string name, string alt=""){
+    <img src="/public/glyphs/@(name).png" alt="@alt"/>
+}
+@helper RepoLink(dynamic repo){
+    var id = repo.ID.ToString();
+    <a href="/repo/@id">@repo.Name</a>
+}
+@helper Image(string imageFile, string alt="") {
+    <img src = "/public/images/@imageFile" alt="@alt" />
+}
+@helper ImageLink(string link, string imageFile) {
+    <a href="@link">
+        @Assets.Image(imageFile)
+    </a>
+}
+@helper Templates(){
+    <script type = "text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+}
+
+@helper jQuery() {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" type="text/javascript"></script>
+    }
+@helper SubmitButton(string text="Save") {
+    
+  <button type="submit" class="button positive">
+    <img src="/public/stylesheets/plugins/buttons/icons/tick.png" alt=""/>@text
+  </button>
+}
+@helper PositiveButton(string id, string text) {
+    
+  <button type="submit" class="button positive" id="@id">
+    <img src="/public/stylesheets/plugins/buttons/icons/tick.png" alt=""/>@text
+  </button>
+}

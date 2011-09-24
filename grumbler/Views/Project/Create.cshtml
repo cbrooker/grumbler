@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Assets.CSS("forms")
+@Assets.ButtonCSS()
+<h2 class="groovy-title">Create</h2>
+<form action="/project/create" method="post">
+    <p>
+        <label>Name</label>
+        <input type="text" name="Name" value= ""/>
+    </p>
+    <p>
+        <label>Repository URL</label>
+        <input type="text" name="RepositoryUrl" value= "" size=80/>
+        <i>This is the public URL of your git repo</i>
+    </p>
+    <p>
+        <label>Deploy Path</label>
+        <input type="text" name="DeployPath" value= "" size=80/>
+        <i>The full path to your repo on Disk. This is optional - if you don't put a name here the repo will be created in the site's App_Data folder under the name of the project</i>
+    </p>
+    <p>
+        @Assets.SubmitButton()
+    </p>
+</form>
